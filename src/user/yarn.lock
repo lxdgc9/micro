@@ -744,10 +744,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@gdvn-longdp/common@^1.0.13":
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/@gdvn-longdp/common/-/common-1.0.13.tgz#8fa4e8b3bbdd1fe66af1efc462247d5268ff28fe"
-  integrity sha512-gVGJeTFnUuDrlS2qCnJH+BieD2f6R/cycPJOkY1R9ElNY1SPqCDw461j1Alaq38FsbOOmdNWP21aT8fviwEKnA==
+"@gdvn-longdp/common@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@gdvn-longdp/common/-/common-1.0.15.tgz#5c45ae9ddc258fcb2356b5afe9a9916d9306ac2b"
+  integrity sha512-UHDGmrbfNmxLk149xaH0VXYbRgiFU1AR9wOTjB/rWaRQe6rZgHG/j5FNURHjQXSb9nvwSgdVHRPpP/q53MLDUA==
   dependencies:
     "@types/express" "^4.17.17"
     "@types/express-validator" "^3.0.0"

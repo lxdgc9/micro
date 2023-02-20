@@ -1,6 +1,8 @@
 import { Listener, Subjects, UserCreatedEvent } from "@gdvn-longdp/common";
 import { Message } from "node-nats-streaming";
 import { Account } from "../../models/account";
+import { natsWrapper } from "../../nats-wrapper";
+import { AccountCreatedPublisher } from "../publishers/account-created-publisher";
 import { queueGroupName } from "./queue-group-name";
 
 class UserCreatedListener extends Listener<UserCreatedEvent> {
@@ -16,6 +18,12 @@ class UserCreatedListener extends Listener<UserCreatedEvent> {
       userId,
     });
     await account.save();
+
+    new AccountCreatedPublisher(natsWrapper.client).publish({
+      accountId: account.id as string,
+      userId: account.userId,
+      key: account.username,
+    });
 
     // ack the message
     msg.ack();
