@@ -5,7 +5,7 @@ import { queueGroupName } from "./queue-group-name";
 
 class AccountCreatedListener extends Listener<AccountCreatedEvent> {
   subject: Subjects.AccountCreated = Subjects.AccountCreated;
-  queueGroupName: string = queueGroupName;
+  queueGroupName = queueGroupName;
 
   async onMessage(data: AccountCreatedEvent["data"], msg: Message) {
     const user = await User.findById(data.userId);

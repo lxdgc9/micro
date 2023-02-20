@@ -15,9 +15,9 @@ router.post("/", async (req: Request, res: Response) => {
   await user.save();
 
   new UserCreatedPublisher(natsWrapper.client).publish({
-    id: user.id,
     username,
     password,
+    userId: user.id as string,
   });
 
   res.status(201).send(user);

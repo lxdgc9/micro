@@ -21,6 +21,7 @@ kind: Service
 metadata:
   name: user-mongo-srv
 spec:
+  type: NodePort
   selector:
     app: user-mongo
   ports:

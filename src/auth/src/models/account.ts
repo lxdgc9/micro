@@ -4,7 +4,7 @@ import { Password } from "../helpers/password";
 interface AccountAttrs {
   username: string;
   password: string;
-  userId: mongoose.Types.ObjectId;
+  userId: string;
 }
 
 type AccountDoc = AccountAttrs & mongoose.Document;
@@ -20,15 +20,15 @@ const accountSchema = new mongoose.Schema<AccountAttrs>(
       unique: true,
       trim: true,
       lowercase: true,
-      required: [true, "Yêu cầu tên đăng nhập"],
+      required: true,
     },
     password: {
       type: String,
-      required: [true, "Yêu cầu mật khẩu"],
+      required: true,
     },
     userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: [true, "Yêu cầu ID người dùng"],
+      type: String,
+      required: true,
     },
   },
   {
