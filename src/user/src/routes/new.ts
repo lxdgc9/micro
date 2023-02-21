@@ -10,6 +10,7 @@ const router = Router();
 
 router.post("/", async (req: Request, res: Response, next: NextFunction) => {
   const { fullName, username, phone, email, password } = req.body;
+
   try {
     const profile = Profile.build({
       baseInfo: {
@@ -39,7 +40,7 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     });
   } catch (err) {
     console.log(err);
-    next(new BadRequestError("Create new user failure"));
+    next(new BadRequestError("Create New User Failure"));
   }
 });
 

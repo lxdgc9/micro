@@ -26,3 +26,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: gdvn/company
+      context: src/company
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
