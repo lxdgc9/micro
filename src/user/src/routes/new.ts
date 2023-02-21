@@ -1,7 +1,8 @@
 import { Request, Response, Router } from "express";
-import { UserCreatedPublisher } from "../events/publishers/user-created-publisher";
+import { UserCreationSuccessPublisher } from "../events/publishers/user-creation-success-publisher";
 import { Profile } from "../models/profile";
 import { User } from "../models/user";
+import { UserFilter } from "../models/user-filter";
 import { natsWrapper } from "../nats-wrapper";
 
 const router = Router();
@@ -22,13 +23,18 @@ router.post("/", async (req: Request, res: Response) => {
 
   res.status(201).send(user);
 
-  new UserCreatedPublisher(natsWrapper.client).publish({
+  new UserCreationSuccessPublisher(natsWrapper.client).publish({
     username,
-    email,
-    phone,
     password,
     userId: user.id,
   });
+
+  const userFilter = UserFilter.build({
+    userId: user.id,
+    fullName: profile.baseInfo.fullName,
+    phone: profile.baseInfo.phone,
+  });
+  await userFilter.save();
 });
 
 export { router as newUserRouter };

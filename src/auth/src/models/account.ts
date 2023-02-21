@@ -17,10 +17,10 @@ const accountSchema = new mongoose.Schema<AccountAttrs>(
   {
     username: {
       type: String,
+      required: true,
       unique: true,
       trim: true,
       lowercase: true,
-      required: true,
     },
     password: {
       type: String,
@@ -29,6 +29,7 @@ const accountSchema = new mongoose.Schema<AccountAttrs>(
     userId: {
       type: String,
       required: true,
+      unique: true,
     },
   },
   {

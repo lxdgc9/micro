@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { app } from "./app";
-import { AccountCreatedListener } from "./events/listeners/account-created-listener";
+import { AccountCreationFailureListener } from "./events/listeners/account-creation-failure-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 async function main() {
@@ -30,7 +30,7 @@ async function main() {
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
 
-    new AccountCreatedListener(natsWrapper.client).listen();
+    new AccountCreationFailureListener(natsWrapper.client).listen();
 
     mongoose.set("strictQuery", true);
 
