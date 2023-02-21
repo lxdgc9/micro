@@ -7,7 +7,7 @@ import { natsWrapper } from "../nats-wrapper";
 const router = Router();
 
 router.get("/api/users", (req: Request, res: Response) => {
-  res.send("hsfkhdsfjksdh");
+  res.send("hello world");
 });
 
 router.post("/api/users", async (req: Request, res: Response) => {
