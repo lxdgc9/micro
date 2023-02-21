@@ -10,7 +10,9 @@ class UserCreatedListener extends Listener<UserCreatedEvent> {
   queueGroupName = queueGroupName;
 
   async onMessage(data: UserCreatedEvent["data"], msg: Message) {
-    const { username, password, userId } = data;
+    const { username, phone, email, password, userId } = data;
+
+    console.log(data);
 
     const account = Account.build({
       username,

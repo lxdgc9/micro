@@ -6,25 +6,29 @@ import { natsWrapper } from "../nats-wrapper";
 
 const router = Router();
 
-router.get("/api/users", (req: Request, res: Response) => {
-  res.send("hello world");
-});
+router.post("/", async (req: Request, res: Response) => {
+  const { fullName, username, phone, email, password } = req.body;
 
-router.post("/api/users", async (req: Request, res: Response) => {
-  const { username, password, name } = req.body;
-
-  const profile = Profile.build({ name });
+  const profile = Profile.build({
+    baseInfo: {
+      fullName,
+      phone,
+      email,
+    },
+  });
   const user = User.build({ profile: profile.id });
   await profile.save();
   await user.save();
 
+  res.status(201).send(user);
+
   new UserCreatedPublisher(natsWrapper.client).publish({
     username,
+    email,
+    phone,
     password,
-    userId: user.id as string,
+    userId: user.id,
   });
-
-  res.status(201).send(user);
 });
 
 export { router as newUserRouter };

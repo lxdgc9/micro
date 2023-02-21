@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 interface UserAttrs {
   profile: mongoose.Types.ObjectId;
+  hasAccess?: boolean;
 }
 
 type UserDoc = UserAttrs & mongoose.Document;
@@ -16,6 +17,10 @@ const userSchema = new mongoose.Schema<UserAttrs>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "profile",
       required: true,
+    },
+    hasAccess: {
+      type: Boolean,
+      default: true,
     },
   },
   {
