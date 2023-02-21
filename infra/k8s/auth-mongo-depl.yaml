@@ -21,7 +21,6 @@ kind: Service
 metadata:
   name: auth-mongo-srv
 spec:
-  type: NodePort
   selector:
     app: auth-mongo
   ports:
@@ -29,3 +28,4 @@ spec:
       protocol: TCP
       port: 27017
       targetPort: 27017
+  type: NodePort

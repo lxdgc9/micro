@@ -6,7 +6,11 @@ import { natsWrapper } from "../nats-wrapper";
 
 const router = Router();
 
-router.post("/", async (req: Request, res: Response) => {
+router.get("/api/users", (req: Request, res: Response) => {
+  res.send("hsfkhdsfjksdh");
+});
+
+router.post("/api/users", async (req: Request, res: Response) => {
   const { username, password, name } = req.body;
 
   const profile = Profile.build({ name });
