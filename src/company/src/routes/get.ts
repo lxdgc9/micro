@@ -9,6 +9,7 @@ router.get("/", async (_req: Request, res: Response) => {
     select: "-companyId",
     populate: {
       path: "jobs",
+      select: "-departmentId",
     },
   });
 
