@@ -8,7 +8,7 @@
     "dev": "nodemon src/index.ts"
   },
   "dependencies": {
-    "@gdvn-longdp/common": "^1.0.25",
+    "@gdvn-longdp/common": "^1.0.26",
     "express": "^4.18.2",
     "mongoose": "^6.9.2",
     "node-nats-streaming": "^0.3.2"

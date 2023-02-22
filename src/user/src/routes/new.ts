@@ -1,6 +1,6 @@
 import { BadRequestError, validateRequest } from "@gdvn-longdp/common";
 import { NextFunction, Request, Response, Router } from "express";
-import { UserCreationSuccessPublisher } from "../events/publishers/user-creation-success-publisher";
+import { CreateUserSuccessPublisher } from "../events/publishers/create-user-success-publisher";
 import { User } from "../models/user";
 import { natsWrapper } from "../nats-wrapper";
 
@@ -27,7 +27,7 @@ router.post(
 
       res.status(201).send(user);
 
-      new UserCreationSuccessPublisher(natsWrapper.client).publish({
+      new CreateUserSuccessPublisher(natsWrapper.client).publish({
         userId: user.id,
         username,
         password,

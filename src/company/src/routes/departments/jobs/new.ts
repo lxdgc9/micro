@@ -1,6 +1,6 @@
-import { BadRequestError } from "@gdvn-longdp/common";
+import { BadRequestError, validateRequest } from "@gdvn-longdp/common";
 import { NextFunction, Request, Response, Router } from "express";
-import { JobCreationSuccessPublisher } from "../../../events/publishers/job-creation-success-publisher";
+import { CreateJobSuccessPublisher } from "../../../events/publishers/create-job-success-publisher";
 import { Department } from "../../../models/department";
 import { Job } from "../../../models/job";
 import { natsWrapper } from "../../../nats-wrapper";
@@ -9,6 +9,8 @@ const router = Router();
 
 router.post(
   "/departments/jobs",
+  [],
+  validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
     const { departmentId, name } = req.body;
 
@@ -30,7 +32,7 @@ router.post(
 
       res.status(201).send(job);
 
-      new JobCreationSuccessPublisher(natsWrapper.client).publish({
+      new CreateJobSuccessPublisher(natsWrapper.client).publish({
         jobId: job.id,
         departmentId: department.id,
         name: job.name,

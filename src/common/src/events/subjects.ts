@@ -1,13 +1,19 @@
 enum Subjects {
-  UserServiceUserCreationSuccess = "user_service:user:creation:success",
-  UserServiceUserCreationFailure = "user_service:user:creation:failure",
+  // User service
+  UserSrvCreateUserSuccess = "user-srv:create:user:success",
+  UserSrvCreateUserFailure = "user-srv:create:user:failure",
 
-  AuthServiceAccountCreationSuccess = "auth_service:account:creation:success",
-  AuthServiceAccountCreationFailure = "auth_service:account:creation:failure",
+  // Auth service
+  AuthSrvCreateAccountSuccess = "auth_srv:create:account:success",
+  AuthSrvCreateAccountFailure = "auth_srv:create:account:failure",
 
-  CompanyServiceCompanyCreationSuccess = "company_service:company:creation:success",
-  CompanyServiceDepartmentCreationSuccess = "company_service:department:creation:success",
-  CompanyServiceJobCreationSuccess = "company_service:job:creation:success",
+  // Company service
+  CompanySrvCreateCompanySuccess = "company_srv:create:company:success",
+  CompanySrvUpdateCompanySuccess = "company_srv:update:company:success",
+  CompanySrvCreateDepartmentSuccess = "company_srv:create:department:success",
+  CompanySrvUpdateDepartmentSuccess = "company_srv:update:department:success",
+  CompanySrvCreateJobSuccess = "company_srv:create:job:success",
+  CompanySrvUpdateJobSuccess = "company_srv:update:job:success",
 }
 
 export { Subjects };

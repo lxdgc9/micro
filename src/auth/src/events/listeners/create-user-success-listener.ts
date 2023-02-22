@@ -1,20 +1,20 @@
 import {
+  CreateUserSuccessEvent,
   Listener,
   Subjects,
-  UserCreationSuccessEvent,
 } from "@gdvn-longdp/common";
 import { Message } from "node-nats-streaming";
 import { Account } from "../../models/account";
 import { natsWrapper } from "../../nats-wrapper";
-import { AccountCreationFailurePublisher } from "../publishers/account-creation-failure-publisher";
+import { CreateAccountFailurePublisher } from "../publishers/create-account-failure-publisher";
 import { queueGroupName } from "./queue-group-name";
 
-class UserCreationSuccessListener extends Listener<UserCreationSuccessEvent> {
-  subject: Subjects.UserServiceUserCreationSuccess =
-    Subjects.UserServiceUserCreationSuccess;
+class CreateUserSuccessListener extends Listener<CreateUserSuccessEvent> {
+  subject: Subjects.UserSrvCreateUserSuccess =
+    Subjects.UserSrvCreateUserSuccess;
   queueGroupName = queueGroupName;
 
-  async onMessage(data: UserCreationSuccessEvent["data"], msg: Message) {
+  async onMessage(data: CreateUserSuccessEvent["data"], msg: Message) {
     const { userId, username, password } = data;
 
     const account = Account.build({
@@ -27,7 +27,7 @@ class UserCreationSuccessListener extends Listener<UserCreationSuccessEvent> {
       await account.save();
     } catch (err) {
       console.log(err);
-      new AccountCreationFailurePublisher(natsWrapper.client).publish({
+      new CreateAccountFailurePublisher(natsWrapper.client).publish({
         userId: account.userId,
       });
     }
@@ -37,4 +37,4 @@ class UserCreationSuccessListener extends Listener<UserCreationSuccessEvent> {
   }
 }
 
-export { UserCreationSuccessListener };
+export { CreateUserSuccessListener };

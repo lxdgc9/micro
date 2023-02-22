@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import { app } from "./app";
-import { AccountCreationFailureListener } from "./events/listeners/account-creation-failure-listener";
-import { CompanyCreationSuccessListener } from "./events/listeners/company-creation-success-listener";
-import { DepartmentCreationSuccessListener } from "./events/listeners/department-creation-success-listener";
-import { JobCreationSuccessListener } from "./events/listeners/job-creation-success-listener";
+import { CreateAccountFailureListener } from "./events/listeners/create-account-failure-listener";
+import { CreateCompanySuccessListener } from "./events/listeners/create-company-success-listener";
+import { CreateDepartmentSuccessListener } from "./events/listeners/create-department-success-listener";
+import { CreateJobSuccessListener } from "./events/listeners/create-job-success-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 async function main() {
@@ -33,10 +33,10 @@ async function main() {
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
 
-    new AccountCreationFailureListener(natsWrapper.client).listen();
-    new CompanyCreationSuccessListener(natsWrapper.client).listen();
-    new DepartmentCreationSuccessListener(natsWrapper.client).listen();
-    new JobCreationSuccessListener(natsWrapper.client).listen();
+    new CreateAccountFailureListener(natsWrapper.client).listen();
+    new CreateCompanySuccessListener(natsWrapper.client).listen();
+    new CreateDepartmentSuccessListener(natsWrapper.client).listen();
+    new CreateJobSuccessListener(natsWrapper.client).listen();
 
     mongoose.set("strictQuery", true);
 

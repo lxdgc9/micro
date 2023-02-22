@@ -6,12 +6,15 @@ import { newJobRouter } from "./routes/departments/jobs/new";
 import { newDepartmentRouter } from "./routes/departments/new";
 import { getCompaniesRouter } from "./routes/get";
 import { newCompanyRouter } from "./routes/new";
+import { updateCompanyRouter } from "./routes/update";
+
 const app = express();
 
 app.use(express.json());
 
 app.use("/api/companies", getCompaniesRouter);
 app.use("/api/companies", newCompanyRouter);
+app.use("/api/companies", updateCompanyRouter);
 
 app.use("/api/companies", getDepartmentsRouter);
 app.use("/api/companies", newDepartmentRouter);

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { app } from "./app";
-import { UserCreationSuccessListener } from "./events/listeners/user-creation-success-listener";
+import { CreateUserSuccessListener } from "./events/listeners/create-user-success-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 async function main() {
@@ -36,7 +36,7 @@ async function main() {
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
 
-    new UserCreationSuccessListener(natsWrapper.client).listen();
+    new CreateUserSuccessListener(natsWrapper.client).listen();
 
     mongoose.set("strictQuery", true);
 

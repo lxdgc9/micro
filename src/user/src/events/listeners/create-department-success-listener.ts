@@ -1,5 +1,5 @@
 import {
-  DepartmentCreationSuccessEvent,
+  CreateDepartmentSuccessEvent,
   Listener,
   Subjects,
 } from "@gdvn-longdp/common";
@@ -8,12 +8,12 @@ import { Company } from "../../models/company";
 import { Department } from "../../models/department";
 import { queueGroupName } from "./queue-group-name";
 
-class DepartmentCreationSuccessListener extends Listener<DepartmentCreationSuccessEvent> {
-  subject: Subjects.CompanyServiceDepartmentCreationSuccess =
-    Subjects.CompanyServiceDepartmentCreationSuccess;
+class CreateDepartmentSuccessListener extends Listener<CreateDepartmentSuccessEvent> {
+  subject: Subjects.CompanySrvCreateDepartmentSuccess =
+    Subjects.CompanySrvCreateDepartmentSuccess;
   queueGroupName = queueGroupName;
 
-  async onMessage(data: DepartmentCreationSuccessEvent["data"], msg: Message) {
+  async onMessage(data: CreateDepartmentSuccessEvent["data"], msg: Message) {
     const { departmentId, companyId, name } = data;
 
     // Find company
@@ -34,4 +34,4 @@ class DepartmentCreationSuccessListener extends Listener<DepartmentCreationSucce
   }
 }
 
-export { DepartmentCreationSuccessListener };
+export { CreateDepartmentSuccessListener };

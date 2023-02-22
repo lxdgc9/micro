@@ -1,19 +1,15 @@
-import {
-  JobCreationSuccessEvent,
-  Listener,
-  Subjects,
-} from "@gdvn-longdp/common";
+import { CreateJobSuccessEvent, Listener, Subjects } from "@gdvn-longdp/common";
 import { Message } from "node-nats-streaming";
 import { Department } from "../../models/department";
 import { Job } from "../../models/job";
 import { queueGroupName } from "./queue-group-name";
 
-class JobCreationSuccessListener extends Listener<JobCreationSuccessEvent> {
-  subject: Subjects.CompanyServiceJobCreationSuccess =
-    Subjects.CompanyServiceJobCreationSuccess;
+class CreateJobSuccessListener extends Listener<CreateJobSuccessEvent> {
+  subject: Subjects.CompanySrvCreateJobSuccess =
+    Subjects.CompanySrvCreateJobSuccess;
   queueGroupName = queueGroupName;
 
-  async onMessage(data: JobCreationSuccessEvent["data"], msg: Message) {
+  async onMessage(data: CreateJobSuccessEvent["data"], msg: Message) {
     const { jobId, departmentId, name } = data;
 
     // Find department
@@ -34,4 +30,4 @@ class JobCreationSuccessListener extends Listener<JobCreationSuccessEvent> {
   }
 }
 
-export { JobCreationSuccessListener };
+export { CreateJobSuccessListener };

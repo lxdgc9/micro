@@ -1,5 +1,5 @@
 import {
-  AccountCreationFailureEvent,
+  CreateAccountFailureEvent,
   Listener,
   Subjects,
 } from "@gdvn-longdp/common";
@@ -7,12 +7,12 @@ import { Message } from "node-nats-streaming";
 import { User } from "../../models/user";
 import { queueGroupName } from "./queue-group-name";
 
-class AccountCreationFailureListener extends Listener<AccountCreationFailureEvent> {
-  subject: Subjects.AuthServiceAccountCreationFailure =
-    Subjects.AuthServiceAccountCreationFailure;
+class CreateAccountFailureListener extends Listener<CreateAccountFailureEvent> {
+  subject: Subjects.AuthSrvCreateAccountFailure =
+    Subjects.AuthSrvCreateAccountFailure;
   queueGroupName = queueGroupName;
 
-  async onMessage(data: AccountCreationFailureEvent["data"], msg: Message) {
+  async onMessage(data: CreateAccountFailureEvent["data"], msg: Message) {
     const { userId } = data;
 
     const user = await User.findByIdAndDelete(userId);
@@ -24,4 +24,4 @@ class AccountCreationFailureListener extends Listener<AccountCreationFailureEven
   }
 }
 
-export { AccountCreationFailureListener };
+export { CreateAccountFailureListener };
