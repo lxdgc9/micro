@@ -5,7 +5,7 @@ import { User } from "../../models/user";
 const router = Router();
 
 router.get(
-  "/:userId/profile",
+  "/:userId/profiles",
   async (req: Request, res: Response, next: NextFunction) => {
     const { userId } = req.params;
 

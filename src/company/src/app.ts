@@ -13,11 +13,11 @@ app.use(express.json());
 app.use("/api/companies", getCompaniesRouter);
 app.use("/api/companies", newCompanyRouter);
 
-app.use("/api/companies/departments", getDepartmentsRouter);
-app.use("/api/companies/departments", newDepartmentRouter);
+app.use("/api/companies", getDepartmentsRouter);
+app.use("/api/companies", newDepartmentRouter);
 
-app.use("/api/companies/departments/jobs", getJobsRouter);
-app.use("/api/companies/departments/jobs", newJobRouter);
+app.use("/api/companies", getJobsRouter);
+app.use("/api/companies", newJobRouter);
 
 app.use(errorHandler);
 

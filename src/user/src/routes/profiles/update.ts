@@ -6,7 +6,7 @@ import { User } from "../../models/user";
 const router = Router();
 
 router.patch(
-  "/:userId/profile",
+  "/:userId/profiles",
   [],
   validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
