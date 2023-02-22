@@ -57,4 +57,4 @@ router.patch(
   }
 );
 
-export { router as updateDepartmentRouter };
+export { router as updateJobRouter };
