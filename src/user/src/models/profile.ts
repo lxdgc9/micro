@@ -15,17 +15,17 @@ interface BaseInfo {
   idCard?: string;
 }
 
-interface ProfAttrs {
+interface ProfileAttrs {
   baseInfo: BaseInfo;
 }
 
-type ProfDoc = ProfAttrs & mongoose.Document;
+type ProfileDoc = ProfileAttrs & mongoose.Document;
 
-type ProfModel = mongoose.Model<ProfDoc> & {
-  build(attrs: ProfAttrs): ProfDoc;
+type ProfModel = mongoose.Model<ProfileDoc> & {
+  build(attrs: ProfileAttrs): ProfileDoc;
 };
 
-const profSchema = new mongoose.Schema<ProfAttrs>(
+const profileSchema = new mongoose.Schema<ProfileAttrs>(
   {
     baseInfo: {
       fullName: {
@@ -76,15 +76,15 @@ const profSchema = new mongoose.Schema<ProfAttrs>(
 );
 
 // Remove Extra Spaces From a String
-profSchema.pre("save", function (next) {
+profileSchema.pre("save", function (next) {
   this.baseInfo.fullName = this.baseInfo.fullName.replace(/\s+/g, " ").trim();
   next();
 });
 
-profSchema.statics.build = (attrs: ProfAttrs) => {
+profileSchema.statics.build = (attrs: ProfileAttrs) => {
   return new Profile(attrs);
 };
 
-const Profile = mongoose.model<ProfDoc, ProfModel>("profile", profSchema);
+const Profile = mongoose.model<ProfileDoc, ProfModel>("profile", profileSchema);
 
 export { Profile };

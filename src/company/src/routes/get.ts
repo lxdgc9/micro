@@ -4,7 +4,7 @@ import { Company } from "../models/company";
 const router = Router();
 
 router.get("/", async (_req: Request, res: Response) => {
-  const company = await Company.find({}).populate({
+  const companies = await Company.find({}).populate({
     path: "departments",
     select: "-companyId",
     populate: {
@@ -12,7 +12,7 @@ router.get("/", async (_req: Request, res: Response) => {
     },
   });
 
-  res.send(company);
+  res.send(companies);
 });
 
-export { router as getCompanyRouter };
+export { router as getCompaniesRouter };

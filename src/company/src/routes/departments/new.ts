@@ -4,7 +4,7 @@ import { Department } from "../../models/department";
 
 const router = Router();
 
-router.post("/", async (req: Request, res: Response, next: NextFunction) => {
+router.post("/", async (req: Request, res: Response, _next: NextFunction) => {
   const { companyId, name } = req.body;
 
   const department = Department.build({
