@@ -3,6 +3,7 @@ import express from "express";
 import { getJobsRouter } from "./routes/departments/companies/get";
 import { newJobRouter } from "./routes/departments/companies/new";
 import { getDepartmentsRouter } from "./routes/departments/get";
+import { newDepartmentRouter } from "./routes/departments/new";
 import { getCompaniesRouter } from "./routes/get";
 import { newCompanyRouter } from "./routes/new";
 const app = express();
@@ -13,7 +14,7 @@ app.use("/api/companies", getCompaniesRouter);
 app.use("/api/companies", newCompanyRouter);
 
 app.use("/api/companies/departments", getDepartmentsRouter);
-app.use("/api/companies/departments", getDepartmentsRouter);
+app.use("/api/companies/departments", newDepartmentRouter);
 
 app.use("/api/companies/departments/jobs", getJobsRouter);
 app.use("/api/companies/departments/jobs", newJobRouter);

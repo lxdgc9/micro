@@ -22,7 +22,6 @@ const departmentSchema = new mongoose.Schema<DepartmentAttrs>(
       type: String,
       required: true,
       trim: true,
-      uppercase: true,
     },
     jobs: [
       {

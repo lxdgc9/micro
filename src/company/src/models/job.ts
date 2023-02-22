@@ -21,7 +21,6 @@ const jobSchema = new mongoose.Schema<JobAttrs>(
       type: String,
       required: true,
       trim: true,
-      uppercase: true,
     },
   },
   {
