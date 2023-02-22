@@ -5,7 +5,8 @@ import {
 } from "@gdvn-longdp/common";
 
 class UserCreationSuccessPublisher extends Publisher<UserCreationSuccessEvent> {
-  subject: Subjects.UserCreationSuccess = Subjects.UserCreationSuccess;
+  subject: Subjects.UserServiceUserCreationSuccess =
+    Subjects.UserServiceUserCreationSuccess;
 }
 
 export { UserCreationSuccessPublisher };

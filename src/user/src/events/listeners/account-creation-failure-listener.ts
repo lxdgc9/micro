@@ -10,7 +10,8 @@ import { UserFilter } from "../../models/user-filter";
 import { queueGroupName } from "./queue-group-name";
 
 class AccountCreationFailureListener extends Listener<AccountCreationFailureEvent> {
-  subject: Subjects.AcocuntCreationFailure = Subjects.AcocuntCreationFailure;
+  subject: Subjects.AuthServiceAccountCreationFailure =
+    Subjects.AuthServiceAccountCreationFailure;
   queueGroupName = queueGroupName;
 
   async onMessage(data: AccountCreationFailureEvent["data"], msg: Message) {

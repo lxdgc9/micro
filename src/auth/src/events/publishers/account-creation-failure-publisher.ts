@@ -5,7 +5,8 @@ import {
 } from "@gdvn-longdp/common";
 
 class AccountCreationFailurePublisher extends Publisher<AccountCreationFailureEvent> {
-  subject: Subjects.AcocuntCreationFailure = Subjects.AcocuntCreationFailure;
+  subject: Subjects.AuthServiceAccountCreationFailure =
+    Subjects.AuthServiceAccountCreationFailure;
 }
 
 export { AccountCreationFailurePublisher };

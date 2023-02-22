@@ -1,7 +1,7 @@
-import { Subjects } from "./subjects";
+import { Subjects } from "../subjects";
 
 interface AccountCreationFailureEvent {
-  subject: Subjects.AcocuntCreationFailure;
+  subject: Subjects.AuthServiceAccountCreationFailure;
   data: {
     userId: string;
   };

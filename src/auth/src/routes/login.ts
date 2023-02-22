@@ -1,6 +1,5 @@
+import { BadRequestError, validateRequest } from "@gdvn-longdp/common";
 import { Request, Response, Router } from "express";
-import { BadRequestError } from "../../../common/src/erros/bad-request-error";
-import { validateRequest } from "../../../common/src/middlewares/validate-request";
 import { Password } from "../helpers/password";
 import { Account } from "../models/account";
 

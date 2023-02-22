@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { Password } from "../helpers/password";
 
 interface AccountAttrs {
+  userId: string;
   username: string;
   password: string;
-  userId: string;
 }
 
 type AccountDoc = AccountAttrs & mongoose.Document;
@@ -15,6 +15,11 @@ type AccountModel = mongoose.Model<AccountDoc> & {
 
 const accountSchema = new mongoose.Schema<AccountAttrs>(
   {
+    userId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     username: {
       type: String,
       required: true,
@@ -25,11 +30,6 @@ const accountSchema = new mongoose.Schema<AccountAttrs>(
     password: {
       type: String,
       required: true,
-    },
-    userId: {
-      type: String,
-      required: true,
-      unique: true,
     },
   },
   {

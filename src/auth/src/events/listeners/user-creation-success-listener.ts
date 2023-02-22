@@ -10,16 +10,17 @@ import { AccountCreationFailurePublisher } from "../publishers/account-creation-
 import { queueGroupName } from "./queue-group-name";
 
 class UserCreationSuccessListener extends Listener<UserCreationSuccessEvent> {
-  subject: Subjects.UserCreationSuccess = Subjects.UserCreationSuccess;
+  subject: Subjects.UserServiceUserCreationSuccess =
+    Subjects.UserServiceUserCreationSuccess;
   queueGroupName = queueGroupName;
 
   async onMessage(data: UserCreationSuccessEvent["data"], msg: Message) {
-    const { username, password, userId } = data;
+    const { userId, username, password } = data;
 
     const account = Account.build({
+      userId,
       username,
       password,
-      userId,
     });
 
     try {

@@ -1,11 +1,11 @@
-import { Subjects } from "./subjects";
+import { Subjects } from "../subjects";
 
 interface UserCreationSuccessEvent {
-  subject: Subjects.UserCreationSuccess;
+  subject: Subjects.UserServiceUserCreationSuccess;
   data: {
+    userId: string;
     username: string;
     password: string;
-    userId: string;
   };
 }
 

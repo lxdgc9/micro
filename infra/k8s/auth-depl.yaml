@@ -17,9 +17,9 @@ spec:
           image: gdvn/auth
           env:
             - name: ACCESS_TOKEN_SECRET
-              value: 'hello-world'
+              value: 'hETtpnoQGV'
             - name: REFRESH_TOKEN_SECRET
-              value: 'hello-world'
+              value: 'lnrnldlwkW'
             - name: MONGO_URI
               value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: NATS_CLIENT_ID
