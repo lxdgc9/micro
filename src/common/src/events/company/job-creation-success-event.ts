@@ -3,7 +3,7 @@ import { Subjects } from "../subjects";
 interface JobCreationSuccessEvent {
   subject: Subjects.CompanyServiceJobCreationSuccess;
   data: {
-    companyId: string;
+    jobId: string;
     departmentId: string;
     name: string;
   };

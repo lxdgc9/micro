@@ -5,7 +5,6 @@ interface CompanyAttrs {
   name: string;
   doe?: Date;
   avatar?: string;
-  departments?: mongoose.Types.ObjectId[];
 }
 
 type CompanyDoc = CompanyAttrs & mongoose.Document;
@@ -33,13 +32,6 @@ const companySchema = new mongoose.Schema<CompanyAttrs>(
     avatar: {
       type: String,
     },
-    departments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "department",
-        required: true,
-      },
-    ],
   },
   {
     collection: "Company",

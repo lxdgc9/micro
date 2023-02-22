@@ -1,8 +1,8 @@
 import { errorHandler } from "@gdvn-longdp/common";
 import express from "express";
-import { getJobsRouter } from "./routes/departments/companies/get";
-import { newJobRouter } from "./routes/departments/companies/new";
 import { getDepartmentsRouter } from "./routes/departments/get";
+import { getJobsRouter } from "./routes/departments/jobs/get";
+import { newJobRouter } from "./routes/departments/jobs/new";
 import { newDepartmentRouter } from "./routes/departments/new";
 import { getCompaniesRouter } from "./routes/get";
 import { newCompanyRouter } from "./routes/new";

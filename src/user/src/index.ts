@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import { app } from "./app";
 import { AccountCreationFailureListener } from "./events/listeners/account-creation-failure-listener";
 import { CompanyCreationSuccessListener } from "./events/listeners/company-creation-success-listener";
+import { DepartmentCreationSuccessListener } from "./events/listeners/department-creation-success-listener";
+import { JobCreationSuccessListener } from "./events/listeners/job-creation-success-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 async function main() {
@@ -33,6 +35,8 @@ async function main() {
 
     new AccountCreationFailureListener(natsWrapper.client).listen();
     new CompanyCreationSuccessListener(natsWrapper.client).listen();
+    new DepartmentCreationSuccessListener(natsWrapper.client).listen();
+    new JobCreationSuccessListener(natsWrapper.client).listen();
 
     mongoose.set("strictQuery", true);
 
