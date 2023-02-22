@@ -1,6 +1,8 @@
 import { BadRequestError, validateRequest } from "@gdvn-longdp/common";
 import { NextFunction, Request, Response, Router } from "express";
+import { UpdateCompanySuccessPublisher } from "../events/publishers/update-company-success-publisher";
 import { Company } from "../models/company";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = Router();
 
@@ -16,7 +18,11 @@ router.patch(
       const company = await Company.findByIdAndUpdate(
         companyId,
         {
-          $set: { name, doe, avatar },
+          $set: {
+            name,
+            doe,
+            avatar,
+          },
         },
         {
           new: true,
@@ -27,6 +33,13 @@ router.patch(
       }
 
       res.send(company);
+
+      new UpdateCompanySuccessPublisher(natsWrapper.client).publish({
+        companyId: company.id,
+        name: company.name,
+        doe: company.doe,
+        avatar: company.avatar,
+      });
     } catch (err) {
       console.log(err);
       next(new BadRequestError("Update Company Failure"));
