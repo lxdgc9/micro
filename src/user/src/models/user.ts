@@ -1,7 +1,27 @@
 import mongoose from "mongoose";
 
+enum Gender {
+  male = "male",
+  female = "female",
+  other = "other",
+}
+
+interface BaseInfo {
+  fullName: string;
+  dob?: Date;
+  gender?: Gender;
+  phone: string;
+  email: string;
+  idCard?: string;
+}
+
+interface ProfileAttrs {
+  baseInfo: BaseInfo;
+  job?: mongoose.Types.ObjectId;
+}
+
 interface UserAttrs {
-  profile: mongoose.Types.ObjectId;
+  profile: ProfileAttrs;
   hasAccess?: boolean;
 }
 
@@ -14,9 +34,45 @@ type UserModel = mongoose.Model<UserDoc> & {
 const userSchema = new mongoose.Schema<UserAttrs>(
   {
     profile: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "profile",
-      required: true,
+      baseInfo: {
+        fullName: {
+          type: String,
+          required: true,
+          trim: true,
+          uppercase: true,
+        },
+        dob: {
+          type: Date,
+        },
+        gender: {
+          type: String,
+          trim: true,
+          lowercase: true,
+          enum: ["male", "female", "other"],
+          default: "other",
+        },
+        phone: {
+          type: String,
+          required: true,
+          unique: true,
+          trim: true,
+        },
+        email: {
+          type: String,
+          required: true,
+          unique: true,
+          trim: true,
+          lowercase: true,
+        },
+        idCard: {
+          type: String,
+          trim: true,
+        },
+      },
+      job: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "job",
+      },
     },
     hasAccess: {
       type: Boolean,
