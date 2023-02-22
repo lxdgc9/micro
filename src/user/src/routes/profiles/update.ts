@@ -14,21 +14,22 @@ router.patch(
     const { jobId } = req.body;
 
     try {
-      const user = await User.findById(userId);
-      if (!user) {
-        throw new Error("Invalid UserId");
-      }
-
       const job = await Job.findOne({ jobId });
       if (!job) {
         throw new Error("Invalid JobId");
       }
 
-      user.profile.job = job.id;
-
-      await user.save();
-
-      if (user.isModified("profile.job")) {
+      const user = await User.findByIdAndUpdate(
+        userId,
+        {
+          $set: {
+            "profile.job": job.id,
+          },
+        },
+        { new: true }
+      );
+      if (!user) {
+        throw new Error("Invalid UserId");
       }
 
       res.send(user);

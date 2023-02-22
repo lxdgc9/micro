@@ -4,7 +4,7 @@ import { Company } from "../models/company";
 
 const router = Router();
 
-router.get(
+router.patch(
   "/:companyId",
   [],
   validateRequest,
