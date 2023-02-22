@@ -4,6 +4,7 @@ import { getDepartmentsRouter } from "./routes/departments/get";
 import { getJobsRouter } from "./routes/departments/jobs/get";
 import { newJobRouter } from "./routes/departments/jobs/new";
 import { newDepartmentRouter } from "./routes/departments/new";
+import { updateDepartmentRouter } from "./routes/departments/update";
 import { getCompaniesRouter } from "./routes/get";
 import { newCompanyRouter } from "./routes/new";
 import { updateCompanyRouter } from "./routes/update";
@@ -18,6 +19,7 @@ app.use("/api/companies", updateCompanyRouter);
 
 app.use("/api/companies", getDepartmentsRouter);
 app.use("/api/companies", newDepartmentRouter);
+app.use("/api/companies", updateDepartmentRouter);
 
 app.use("/api/companies", getJobsRouter);
 app.use("/api/companies", newJobRouter);

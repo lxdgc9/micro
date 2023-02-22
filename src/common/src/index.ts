@@ -11,6 +11,7 @@ export * from "./events/company/create-company-success-event";
 export * from "./events/company/create-department-success-event";
 export * from "./events/company/create-job-success-event";
 export * from "./events/company/update-company-success-event";
+export * from "./events/company/update-department-success-event";
 export * from "./events/subjects";
 export * from "./events/user/create-user-success-event";
 export * from "./middlewares/current-user";

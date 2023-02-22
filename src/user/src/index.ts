@@ -5,6 +5,7 @@ import { CreateCompanySuccessListener } from "./events/listeners/create-company-
 import { CreateDepartmentSuccessListener } from "./events/listeners/create-department-success-listener";
 import { CreateJobSuccessListener } from "./events/listeners/create-job-success-listener";
 import { UpdateCompanySuccessListener } from "./events/listeners/update-company-success-listener";
+import { UpdateDepartmentSuccessListener } from "./events/listeners/update-department-success-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 async function main() {
@@ -38,6 +39,7 @@ async function main() {
     new CreateCompanySuccessListener(natsWrapper.client).listen();
     new UpdateCompanySuccessListener(natsWrapper.client).listen();
     new CreateDepartmentSuccessListener(natsWrapper.client).listen();
+    new UpdateDepartmentSuccessListener(natsWrapper.client).listen();
     new CreateJobSuccessListener(natsWrapper.client).listen();
 
     mongoose.set("strictQuery", true);
