@@ -11,11 +11,12 @@ router.post(
   [],
   validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
-    const { name, doe, avatar } = req.body;
+    const { name, sign, doe, avatar } = req.body;
 
     try {
       const company = Company.build({
         name,
+        sign,
         doe,
         avatar,
       });

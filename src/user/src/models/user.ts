@@ -164,6 +164,14 @@ const userSchema = new mongoose.Schema<UserAttrs>(
   }
 );
 
+// Remove Extra Spaces From a String
+userSchema.pre("save", function (next) {
+  this.profile.baseInfo.fullName = this.profile.baseInfo.fullName
+    .replace(/\s+/g, " ")
+    .trim();
+  next();
+});
+
 userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);
 };

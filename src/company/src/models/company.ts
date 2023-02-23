@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 interface CompanyAttrs {
   name: string;
+  sign: string;
   doe?: Date;
   avatar?: string;
   departments?: mongoose.Types.ObjectId[];
@@ -18,6 +19,13 @@ const companySchema = new mongoose.Schema<CompanyAttrs>(
     name: {
       type: String,
       required: true,
+      trim: true,
+      uppercase: true,
+    },
+    sign: {
+      type: String,
+      required: true,
+      maxlength: 4,
       trim: true,
       uppercase: true,
     },

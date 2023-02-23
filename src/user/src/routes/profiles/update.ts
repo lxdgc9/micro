@@ -14,7 +14,7 @@ router.patch(
     const { userId } = req.params;
     const {
       code,
-      profile: {
+      baseInfo: {
         fullName,
         dob,
         gender,

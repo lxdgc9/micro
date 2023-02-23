@@ -18,7 +18,7 @@ router.get("/", async (_req: Request, res: Response, next: NextFunction) => {
     res.send(companies);
   } catch (err) {
     console.log(err);
-    next(new NotFoundError("Get Company Failure"));
+    next(new NotFoundError("Get Companies Failure"));
   }
 });
 

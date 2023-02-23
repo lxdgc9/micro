@@ -76,6 +76,12 @@ const relativeSchema = new mongoose.Schema<RelativeAttrs>(
   }
 );
 
+// Remove Extra Spaces From a String
+relativeSchema.pre("save", function (next) {
+  this.fullName = this.fullName.replace(/\s+/g, " ").trim();
+  next();
+});
+
 relativeSchema.statics.build = (attrs: RelativeAttrs) => {
   return new Relative(attrs);
 };
