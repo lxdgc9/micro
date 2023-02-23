@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: relationship-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: relationship
+  template:
+    metadata:
+      labels:
+        app: relationship
+    spec:
+      containers:
+        - name: relationship
+          image: gdvn/relationship
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://relationship-mongo-srv:27017/relationship'
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: gdvn-system
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: relationship-srv
+spec:
+  selector:
+    app: relationship
+  ports:
+    - name: relationship
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: NodePort

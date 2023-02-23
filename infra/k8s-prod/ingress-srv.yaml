@@ -38,6 +38,13 @@ spec:
                 name: allowance-srv
                 port:
                   number: 3000
+          - path: /api/relationships/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: relationship-srv
+                port:
+                  number: 3000
 ---
 apiVersion: v1
 kind: Service

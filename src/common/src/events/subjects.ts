@@ -18,6 +18,10 @@ enum Subjects {
   // Allowance service
   AllowanceSrvCreateAllowanceSuccess = "allowance_srv:create:allowance:success",
   AllowanceSrvUpdateAllowanceSuccess = "allowance_srv:update:allowance:success",
+
+  // Relationship service
+  RelationshipSrvCreateRelationshipSuccess = "relationship_srv:create:relationship:success",
+  RelationshipSrvUpdateRelationshipSuccess = "relationship_srv:update:relationship:success",
 }
 
 export { Subjects };

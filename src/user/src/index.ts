@@ -5,10 +5,12 @@ import { CreateAllowanceSuccessListener } from "./events/listeners/create-allowa
 import { CreateCompanySuccessListener } from "./events/listeners/create-company-success-listener";
 import { CreateDepartmentSuccessListener } from "./events/listeners/create-department-success-listener";
 import { CreateJobSuccessListener } from "./events/listeners/create-job-success-listener";
+import { CreateRelationshipSuccessListener } from "./events/listeners/create-relationship-success-listener";
 import { UpdateAllowanceSuccessListener } from "./events/listeners/update-allowance-success-listener";
 import { UpdateCompanySuccessListener } from "./events/listeners/update-company-success-listener";
 import { UpdateDepartmentSuccessListener } from "./events/listeners/update-department-success-listener";
 import { UpdateJobSuccessListener } from "./events/listeners/update-job-success-listener";
+import { UpdateRelationshipSuccessListener } from "./events/listeners/update-relationship-success-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 async function main() {
@@ -47,6 +49,8 @@ async function main() {
     new UpdateJobSuccessListener(natsWrapper.client).listen();
     new CreateAllowanceSuccessListener(natsWrapper.client).listen();
     new UpdateAllowanceSuccessListener(natsWrapper.client).listen();
+    new CreateRelationshipSuccessListener(natsWrapper.client).listen();
+    new UpdateRelationshipSuccessListener(natsWrapper.client).listen();
 
     mongoose.set("strictQuery", true);
 
