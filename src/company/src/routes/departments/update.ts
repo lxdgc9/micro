@@ -27,7 +27,7 @@ router.patch(
         {
           new: true,
         }
-      );
+      ).populate("jobs");
       if (!department) {
         throw new Error("Invalid departmentId");
       }

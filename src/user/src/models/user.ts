@@ -6,18 +6,27 @@ enum Gender {
   other = "other",
 }
 
-interface BaseInfo {
+interface IdCardAttrs {
+  no?: string;
+  doi?: Date;
+  poi?: Date;
+}
+
+interface BaseInfoArrts {
   fullName: string;
   dob?: Date;
   gender?: Gender;
   phone: string;
   email: string;
-  idCard?: string;
+  idCard?: IdCardAttrs;
 }
 
 interface ProfileAttrs {
-  baseInfo: BaseInfo;
+  code: string;
+  baseInfo: BaseInfoArrts;
   job?: mongoose.Types.ObjectId;
+  office?: string;
+  address?: string;
 }
 
 interface UserAttrs {
@@ -34,6 +43,12 @@ type UserModel = mongoose.Model<UserDoc> & {
 const userSchema = new mongoose.Schema<UserAttrs>(
   {
     profile: {
+      code: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+      },
       baseInfo: {
         fullName: {
           type: String,
@@ -42,14 +57,15 @@ const userSchema = new mongoose.Schema<UserAttrs>(
           uppercase: true,
         },
         dob: {
+          // Date of birth
           type: Date,
         },
         gender: {
           type: String,
           trim: true,
           lowercase: true,
-          enum: ["male", "female", "other"],
-          default: "other",
+          enum: [Gender.male, Gender.female, Gender.other],
+          default: Gender.other,
         },
         phone: {
           type: String,
@@ -65,13 +81,31 @@ const userSchema = new mongoose.Schema<UserAttrs>(
           lowercase: true,
         },
         idCard: {
-          type: String,
-          trim: true,
+          no: {
+            // ID
+            type: String,
+            trim: true,
+          },
+          doi: {
+            // Date of issue
+            type: Date,
+          },
+          poi: {
+            // Place of issue
+            type: Date,
+          },
         },
       },
       job: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "job",
+      },
+      office: {
+        type: String,
+        trim: true,
+      },
+      address: {
+        type: String,
       },
     },
     hasAccess: {

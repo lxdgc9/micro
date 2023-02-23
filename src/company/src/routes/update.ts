@@ -27,7 +27,7 @@ router.patch(
         {
           new: true,
         }
-      );
+      ).populate("departments");
       if (!company) {
         throw new Error("Invalid companyId");
       }

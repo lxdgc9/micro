@@ -11,11 +11,12 @@ router.post(
   [],
   validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
-    const { fullName, username, phone, email, password } = req.body;
+    const { code, fullName, username, phone, email, password } = req.body;
 
     try {
       const user = User.build({
         profile: {
+          code,
           baseInfo: {
             fullName,
             phone,
