@@ -32,6 +32,7 @@ interface ProfileAttrs {
   job?: mongoose.Types.ObjectId;
   office?: string;
   address?: string;
+  relatives?: mongoose.Types.ObjectId[];
   income?: InComeAttrs;
 }
 
@@ -54,6 +55,7 @@ const userSchema = new mongoose.Schema<UserAttrs>(
         required: true,
         unique: true,
         trim: true,
+        uppercase: true,
       },
       baseInfo: {
         fullName: {
@@ -113,6 +115,12 @@ const userSchema = new mongoose.Schema<UserAttrs>(
       address: {
         type: String,
       },
+      relatives: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "relative",
+        },
+      ],
       income: {
         salary: {
           type: Number,

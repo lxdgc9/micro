@@ -28,6 +28,14 @@ router.get(
               },
             },
             {
+              path: "relatives",
+              select: "-userId",
+              populate: {
+                path: "relationship",
+                select: "-_id type",
+              },
+            },
+            {
               path: "income.allowances",
               select: "-allowanceId",
             },

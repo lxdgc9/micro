@@ -35,8 +35,6 @@ router.patch(
         ? await Allowance.find({ allowanceId: allowanceIds })
         : undefined;
 
-      console.log(allowances?.map((el) => el.id));
-
       const user = await User.findByIdAndUpdate(
         userId,
         {
@@ -87,7 +85,7 @@ router.patch(
           ],
         });
       if (!user) {
-        throw new Error("Invalid UserId");
+        throw new Error("Invalid userId");
       }
 
       res.send(user);
