@@ -138,6 +138,19 @@ const userSchema = new mongoose.Schema<UserAttrs>(
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
+
+        if (ret.profile.income) {
+          // Calculate total income
+          const getSumAllowances = ret.profile.income.allowances
+            ? (
+                ret.profile.income.allowances as Array<{ amount: number }>
+              ).reduce((total, currentVal) => {
+                return total + currentVal.amount;
+              }, 0)
+            : 0;
+          ret.profile.income.total =
+            (ret.profile.income.salary || 0) + getSumAllowances;
+        }
       },
     },
   }

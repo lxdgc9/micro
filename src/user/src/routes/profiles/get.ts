@@ -11,7 +11,6 @@ router.get(
 
     try {
       const user = await User.findById(userId)
-        .lean()
         .select("-_id profile")
         .populate({
           path: "profile",
