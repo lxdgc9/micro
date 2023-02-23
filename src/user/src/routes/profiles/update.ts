@@ -24,6 +24,7 @@ router.patch(
       jobId,
       office,
       address,
+      income: { salary = undefined } = {},
     } = req.body;
 
     try {
@@ -45,6 +46,7 @@ router.patch(
             "profile.job": job?.id,
             "profile.office": office,
             "profile.address": address,
+            "profile.income.salary": salary,
           },
         },
         {

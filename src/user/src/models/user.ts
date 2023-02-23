@@ -21,12 +21,17 @@ interface BaseInfoArrts {
   idCard?: IdCardAttrs;
 }
 
+interface InComeAttrs {
+  salary?: Number;
+}
+
 interface ProfileAttrs {
   code: string;
   baseInfo: BaseInfoArrts;
   job?: mongoose.Types.ObjectId;
   office?: string;
   address?: string;
+  income?: InComeAttrs;
 }
 
 interface UserAttrs {
@@ -106,6 +111,12 @@ const userSchema = new mongoose.Schema<UserAttrs>(
       },
       address: {
         type: String,
+      },
+      income: {
+        salary: {
+          type: Number,
+          min: 0,
+        },
       },
     },
     hasAccess: {
