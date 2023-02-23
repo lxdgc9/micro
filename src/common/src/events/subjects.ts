@@ -14,6 +14,10 @@ enum Subjects {
   CompanySrvUpdateDepartmentSuccess = "company_srv:update:department:success",
   CompanySrvCreateJobSuccess = "company_srv:create:job:success",
   CompanySrvUpdateJobSuccess = "company_srv:update:job:success",
+
+  // Allowance service
+  AllowanceSrvCreateAllowanceSuccess = "allowance_srv:create:allowance:success",
+  AllowanceSrvUpdateAllowanceSuccess = "allowance_srv:update:allowance:success",
 }
 
 export { Subjects };

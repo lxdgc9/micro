@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 import { app } from "./app";
 import { CreateAccountFailureListener } from "./events/listeners/create-account-failure-listener";
+import { CreateAllowanceSuccessListener } from "./events/listeners/create-allowance-success-listener";
 import { CreateCompanySuccessListener } from "./events/listeners/create-company-success-listener";
 import { CreateDepartmentSuccessListener } from "./events/listeners/create-department-success-listener";
 import { CreateJobSuccessListener } from "./events/listeners/create-job-success-listener";
+import { UpdateAllowanceSuccessListener } from "./events/listeners/update-allowance-success-listener";
 import { UpdateCompanySuccessListener } from "./events/listeners/update-company-success-listener";
 import { UpdateDepartmentSuccessListener } from "./events/listeners/update-department-success-listener";
 import { UpdateJobSuccessListener } from "./events/listeners/update-job-success-listener";
@@ -43,6 +45,8 @@ async function main() {
     new UpdateDepartmentSuccessListener(natsWrapper.client).listen();
     new CreateJobSuccessListener(natsWrapper.client).listen();
     new UpdateJobSuccessListener(natsWrapper.client).listen();
+    new CreateAllowanceSuccessListener(natsWrapper.client).listen();
+    new UpdateAllowanceSuccessListener(natsWrapper.client).listen();
 
     mongoose.set("strictQuery", true);
 

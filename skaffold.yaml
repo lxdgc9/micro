@@ -34,3 +34,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: gdvn/allowance
+      context: src/allowance
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .

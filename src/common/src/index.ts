@@ -4,6 +4,8 @@ export * from "./errors/http-error";
 export * from "./errors/not-found-error";
 export * from "./errors/request-validation-error";
 export * from "./errors/unauthorized-error";
+export * from "./events/allowance/create-allowance-success-event";
+export * from "./events/allowance/update-allowance-success-event";
 export * from "./events/auth/create-account-failure-event";
 export * from "./events/base-listener";
 export * from "./events/base-publisher";

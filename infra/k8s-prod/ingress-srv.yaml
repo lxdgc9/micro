@@ -31,6 +31,13 @@ spec:
                 name: company-srv
                 port:
                   number: 3000
+          - path: /api/allowances/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: allowance-srv
+                port:
+                  number: 3000
 ---
 apiVersion: v1
 kind: Service

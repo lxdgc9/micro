@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: allowance-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: allowance
+  template:
+    metadata:
+      labels:
+        app: allowance
+    spec:
+      containers:
+        - name: allowance
+          image: gdvn/allowance
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://allowance-mongo-srv:27017/allowance'
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: gdvn-system
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: allowance-srv
+spec:
+  selector:
+    app: allowance
+  ports:
+    - name: allowance
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: NodePort
