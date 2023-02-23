@@ -15,7 +15,6 @@ class UpdateAllowanceSuccessListener extends Listener<UpdateAllowanceSuccessEven
   async onMessage(data: UpdateAllowanceSuccessEvent["data"], msg: Message) {
     const { allowanceId, description, amount } = data;
 
-    console.log(data);
     const allowance = await Allowance.findOneAndUpdate(
       { allowanceId },
       {

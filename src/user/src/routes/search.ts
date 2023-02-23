@@ -15,7 +15,7 @@ router.get("/search", async (req: Request, res: Response) => {
         "profile.baseInfo.phone": key,
       },
     ],
-  }).select("-profile.job");
+  }).select("profile.baseInfo");
 
   res.send(users);
 });

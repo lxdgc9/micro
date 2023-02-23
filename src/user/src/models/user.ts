@@ -23,6 +23,7 @@ interface BaseInfoArrts {
 
 interface InComeAttrs {
   salary?: Number;
+  allowances?: mongoose.Types.ObjectId[];
 }
 
 interface ProfileAttrs {
@@ -117,6 +118,12 @@ const userSchema = new mongoose.Schema<UserAttrs>(
           type: Number,
           min: 0,
         },
+        allowances: [
+          {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "allowance",
+          },
+        ],
       },
     },
     hasAccess: {

@@ -15,18 +15,24 @@ router.get(
         .select("-_id profile")
         .populate({
           path: "profile",
-          populate: {
-            path: "job",
-            select: "-_id -jobId",
-            populate: {
-              path: "department",
-              select: "-_id -departmentId",
+          populate: [
+            {
+              path: "job",
+              select: "-_id -jobId",
               populate: {
-                path: "company",
-                select: "-_id -companyId",
+                path: "department",
+                select: "-_id -departmentId",
+                populate: {
+                  path: "company",
+                  select: "-_id -companyId",
+                },
               },
             },
-          },
+            {
+              path: "income.allowances",
+              select: "-allowanceId",
+            },
+          ],
         });
 
       res.send(user);
