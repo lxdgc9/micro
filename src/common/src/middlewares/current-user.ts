@@ -25,7 +25,9 @@ function currentUser(req: Request, _res: Response, next: NextFunction) {
       process.env.ACCESS_TOKEN_SECRET!
     ) as UserPayload;
     req.currentUser = payload;
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 
   next();
 }

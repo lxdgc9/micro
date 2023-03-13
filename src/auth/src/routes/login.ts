@@ -9,16 +9,16 @@ router.post(
   "/api/login",
   [],
   validateRequest,
-  async (req: Request, res: Response) => {
+  async (req: Request, _res: Response) => {
     const { username, password } = req.body;
 
-    const existingAccount = await Account.findOne({ username });
-    if (!existingAccount) {
+    const existAcc = await Account.findOne({ username });
+    if (!existAcc) {
       throw new BadRequestError("Thông tin đăng nhập không hợp lệ");
     }
 
     const passswordMatch = await Password.compare(
-      existingAccount.password,
+      existAcc.password,
       password
     );
     if (!passswordMatch) {

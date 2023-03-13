@@ -2,8 +2,10 @@ apiVersion: skaffold/v4beta2
 kind: Config
 manifests:
   rawYaml:
-    - ./infra/k8s/*
-    - ./infra/k8s-prod/*
+    - ./infra/k8s/e-bus/*
+    - ./infra/k8s/db/*
+    - ./infra/k8s/srv/*
+    - ./infra/ingress-srv.yaml
 deploy:
   kubectl: {}
 build:

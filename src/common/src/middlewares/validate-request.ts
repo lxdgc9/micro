@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
 import { RequestValidationError } from "../errors/request-validation-error";
 
-function validateRequest(req: Request, res: Response, next: NextFunction) {
+function validateRequest(req: Request, _res: Response, next: NextFunction) {
   const errs = validationResult(req);
 
   if (!errs.isEmpty()) {

@@ -12,7 +12,7 @@ function errorHandler(
   }
 
   res.status(500).send({
-    msg: "Có gì đó sai sai",
+    msg: "Something went wrong",
   });
 }
 

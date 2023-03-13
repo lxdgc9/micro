@@ -30,6 +30,7 @@ const companySchema = new mongoose.Schema<CompanyAttrs>(
       uppercase: true,
     },
     doe: {
+      // Date of establishment
       type: Date,
     },
     avatar: {
